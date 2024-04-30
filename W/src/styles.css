@@ -29,7 +29,7 @@ body {
   overscroll-behavior-y: none;
 
   background-color: #0d1e40;
-  animation: background-color-transition 20s ease infinite;
+  animation: background-color-transition 10s ease infinite;
   padding: 2.5rem;
 
   display: flex;

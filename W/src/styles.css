@@ -53,6 +53,16 @@ a:visited {
   height: 5.2rem;
   align-self: center;
   margin-bottom: 4rem;
+  transition: transform 1.5s ease, height 0.5s ease;
+  border-radius: 100px;
+}
+.logo:hover {
+  height: 6.2rem;
+  -webkit-box-shadow: 0px 0px 105px 45px rgba(245, 17, 211, 0.9);
+  -moz-box-shadow: 0px 0px 105px 45px rgba(245, 17, 211, 0.9);
+  box-shadow: 0px 0px 105px 35px rgba(245, 17, 211, 0.9);
+  cursor: pointer;
+  transform: rotate(360deg);
 }
 
 .workouts {

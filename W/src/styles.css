@@ -66,6 +66,8 @@ a:visited {
   padding: 3rem 5rem 4rem 5rem;
   display: flex;
   flex-direction: column;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
 }
 
 .logo {
@@ -223,6 +225,8 @@ a:visited {
   flex: 1;
   height: 100%;
   background-color: #011526;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
 }
 
 /* Popup width is defined in JS using options */

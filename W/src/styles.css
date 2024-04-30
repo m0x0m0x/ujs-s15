@@ -85,9 +85,6 @@ a:visited {
   cursor: pointer;
   transform: rotate(360deg);
 }
-.logo-hover {
-  background-color: #fff;
-}
 
 .workouts {
   list-style: none;

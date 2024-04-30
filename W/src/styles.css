@@ -29,9 +29,28 @@ body {
   overscroll-behavior-y: none;
 
   background-color: #0d1e40;
+  animation: background-color-transition 20s ease infinite;
   padding: 2.5rem;
 
   display: flex;
+}
+
+@keyframes background-color-transition {
+  0% {
+    background-color: #0d1e40;
+  }
+  25% {
+    background-color: #a61b4e;
+  }
+  50% {
+    background-color: #730e29;
+  }
+  75% {
+    background-color: #bf047e;
+  }
+  100% {
+    background-color: #0d1e40;
+  }
 }
 
 /* GENERAL */

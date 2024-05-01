@@ -38,18 +38,18 @@ if (navigator.geolocation)
         `
       );
 
+      // Make coords for our own location
+      const coords = [-30.750077700995366, 121.46753346785351];
+
       // Leaflet js code
-      const map = L.map("map").setView([51.505, -0.09], 13);
+      const map = L.map("map").setView(coords, 13);
 
       L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution:
           '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       }).addTo(map);
 
-      L.marker([51.5, -0.09])
-        .addTo(map)
-        .bindPopup("A pretty CSS popup.<br> Easily customizable.")
-        .openPopup();
+      L.marker(coords).addTo(map).bindPopup("AUS Booties").openPopup();
 
       // Getting latitude and longitude of interesting places
     },

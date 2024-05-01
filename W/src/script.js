@@ -41,15 +41,33 @@ if (navigator.geolocation)
       // Make coords for our own location
       const AUScoords = [-30.750077700995366, 121.46753346785351];
 
-      //   Leaflet js code
+      //   Default Map
+      // const map = L.map("map").setView(AUScoords, 13);
+
+      // L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      //   attribution:
+      //     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      // }).addTo(map);
+
+      // L.marker(AUScoords).addTo(map).bindPopup("AUS Booties").openPopup();
+
+      //////////////////////////////////
+      // Mao Style Experimentation zone
       const map = L.map("map").setView(AUScoords, 13);
-
-      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        attribution:
-          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-      }).addTo(map);
-
+      const Stadia_AlidadeSatellite = L.tileLayer(
+        "https://tiles.stadiamaps.com/tiles/alidade_satellite/{z}/{x}/{y}{r}.{ext}",
+        {
+          minZoom: 0,
+          maxZoom: 20,
+          attribution:
+            '&copy; CNES, Distribution Airbus DS, © Airbus DS, © PlanetObserver (Contains Copernicus Data) | &copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+          ext: "jpg",
+        }
+      );
+      Stadia_AlidadeSatellite.addTo(map);
       L.marker(AUScoords).addTo(map).bindPopup("AUS Booties").openPopup();
+
+      //////////////////////////////////
     },
     function () {
       alert("Fucker No Location - Bastard");

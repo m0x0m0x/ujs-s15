@@ -39,19 +39,17 @@ if (navigator.geolocation)
       );
 
       // Make coords for our own location
-      const coords = [-30.750077700995366, 121.46753346785351];
+      const AUScoords = [-30.750077700995366, 121.46753346785351];
 
-      // Leaflet js code
-      const map = L.map("map").setView(coords, 13);
+      //   Leaflet js code
+      const map = L.map("map").setView(AUScoords, 13);
 
       L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution:
           '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       }).addTo(map);
 
-      L.marker(coords).addTo(map).bindPopup("AUS Booties").openPopup();
-
-      // Getting latitude and longitude of interesting places
+      L.marker(AUScoords).addTo(map).bindPopup("AUS Booties").openPopup();
     },
     function () {
       alert("Fucker No Location - Bastard");

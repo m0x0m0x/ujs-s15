@@ -28,6 +28,17 @@ if (navigator.geolocation)
       const { longitude } = position.coords;
       console.log(latitude, longitude);
       console.log(`https://www.google.com/maps/@${latitude},${longitude}`);
+      -33.908299238434424, 151.18094953868808;
+
+      console.log(
+        `
+        Australia Woman Juices
+        https://www.google.com/maps/place/52.353793,4.898114
+        
+        `
+      );
+
+      // Getting latitude and longitude of interesting places
     },
     function () {
       alert("Fucker No Location - Bastard");

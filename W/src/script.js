@@ -62,25 +62,27 @@ if (navigator.geolocation)
       map.on("click", function (mapEvent) {
         // Observe the map event
         console.log(mapEvent);
-        const { lat, lng } = mapEvent.latlng;
 
+        // Setting up the form
+        form.classList.remove("hidden");
+
+        // const { lat, lng } = mapEvent.latlng;
         // Add marker
         // L.marker([lat, lng]).addTo(map).bindPopup("Mistresss").openPopup();
-
-        // Creating a popup object
-        L.marker([lat, lng])
-          .addTo(map)
-          .bindPopup(
-            L.popup({
-              maxWidth: 250,
-              minWidth: 100,
-              autoClose: false,
-              closeOnClick: false,
-              className: "running-popup",
-            })
-          )
-          .setPopupContent("Booty")
-          .openPopup();
+        // // Creating a popup object
+        // L.marker([lat, lng])
+        //   .addTo(map)
+        //   .bindPopup(
+        //     L.popup({
+        //       maxWidth: 250,
+        //       minWidth: 100,
+        //       autoClose: false,
+        //       closeOnClick: false,
+        //       className: "running-popup",
+        //     })
+        //   )
+        //   .setPopupContent("Booty")
+        //   .openPopup();
       });
     },
     function () {

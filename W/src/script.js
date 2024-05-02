@@ -1,7 +1,11 @@
 "use strict";
 
 // Import zone
-import { Stadia_AlidadeSatellite, DefaultStyle } from "./mapstyles.js";
+import {
+  Stadia_AlidadeSatellite,
+  DefaultStyle,
+  Stadia_AlidadeSmoothDark,
+} from "./mapstyles.js";
 
 //////////////// Given Code ////////////////////////
 
@@ -50,8 +54,9 @@ if (navigator.geolocation)
       console.log(map);
 
       // Stytles
-      // Stadia_AlidadeSatellite.addTo(map);
-      DefaultStyle.addTo(map);
+      Stadia_AlidadeSatellite.addTo(map);
+      // DefaultStyle.addTo(map);
+      // Stadia_AlidadeSmoothDark.addTo(map);
 
       // Geting the coordinates when clicking on the map
       map.on("click", function (mapEvent) {

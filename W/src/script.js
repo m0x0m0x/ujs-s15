@@ -50,8 +50,8 @@ if (navigator.geolocation)
       console.log(map);
 
       // Stytles
-      Stadia_AlidadeSatellite.addTo(map);
-      // DefaultStyle.addTo(map);
+      // Stadia_AlidadeSatellite.addTo(map);
+      DefaultStyle.addTo(map);
 
       // Geting the coordinates when clicking on the map
       map.on("click", function (mapEvent) {
@@ -60,7 +60,22 @@ if (navigator.geolocation)
         const { lat, lng } = mapEvent.latlng;
 
         // Add marker
-        L.marker([lat, lng]).addTo(map).bindPopup("Mistresss").openPopup();
+        // L.marker([lat, lng]).addTo(map).bindPopup("Mistresss").openPopup();
+
+        // Creating a popup object
+        L.marker([lat, lng])
+          .addTo(map)
+          .bindPopup(
+            L.popup({
+              maxWidth: 250,
+              minWidth: 100,
+              autoClose: false,
+              closeOnClick: false,
+              className: "running-popup",
+            })
+          )
+          .setPopupContent("Booty")
+          .openPopup();
       });
     },
     function () {

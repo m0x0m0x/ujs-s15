@@ -44,14 +44,24 @@ if (navigator.geolocation)
       //////////////////////////////////
       const AUScoords = [-30.750077700995366, 121.46753346785351];
       const bbwSC = [34.09963655644939, -118.28935780082956];
-      const map = L.map("map").setView(bbwSC, 10);
+      const map = L.map("map").setView(bbwSC, 15);
+
+      // Examining the map object
+      console.log(map);
 
       // Stytles
       Stadia_AlidadeSatellite.addTo(map);
       // DefaultStyle.addTo(map);
 
-      // Add marker
-      L.marker(bbwSC).addTo(map).bindPopup("BBWBooty").openPopup();
+      // Geting the coordinates when clicking on the map
+      map.on("click", function (mapEvent) {
+        // Observe the map event
+        console.log(mapEvent);
+        const { lat, lng } = mapEvent.latlng;
+
+        // Add marker
+        L.marker([lat, lng]).addTo(map).bindPopup("Mistresss").openPopup();
+      });
     },
     function () {
       alert("Fucker No Location - Bastard");

@@ -43,14 +43,15 @@ if (navigator.geolocation)
 
       //////////////////////////////////
       const AUScoords = [-30.750077700995366, 121.46753346785351];
-      const map = L.map("map").setView(AUScoords, 13);
+      const bbwSC = [34.09963655644939, -118.28935780082956];
+      const map = L.map("map").setView(bbwSC, 15);
 
       // Stytles
-      // Stadia_AlidadeSatellite.addTo(map);
-      DefaultStyle.addTo(map);
+      Stadia_AlidadeSatellite.addTo(map);
+      // DefaultStyle.addTo(map);
 
       // Add marker
-      L.marker(AUScoords).addTo(map).bindPopup("AUS Booties").openPopup();
+      L.marker(bbwSC).addTo(map).bindPopup("BBWBooty").openPopup();
     },
     function () {
       alert("Fucker No Location - Bastard");

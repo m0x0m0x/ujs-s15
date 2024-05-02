@@ -198,6 +198,8 @@ a:visited {
 .form__input:focus {
   outline: none;
   background-color: #010328;
+  overflow: auto;
+  outline: 3px solid #16a34a;
 }
 
 .form__btn {

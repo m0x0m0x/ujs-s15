@@ -65,6 +65,7 @@ if (navigator.geolocation)
 
         // Setting up the form
         form.classList.remove("hidden");
+        inputDistance.focus();
 
         // const { lat, lng } = mapEvent.latlng;
         // Add marker

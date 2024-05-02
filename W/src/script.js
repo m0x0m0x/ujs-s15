@@ -44,7 +44,7 @@ if (navigator.geolocation)
       //////////////////////////////////
       const AUScoords = [-30.750077700995366, 121.46753346785351];
       const bbwSC = [34.09963655644939, -118.28935780082956];
-      const map = L.map("map").setView(bbwSC, 15);
+      const map = L.map("map").setView(bbwSC, 10);
 
       // Stytles
       Stadia_AlidadeSatellite.addTo(map);

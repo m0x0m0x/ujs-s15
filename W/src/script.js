@@ -57,8 +57,8 @@ if (navigator.geolocation)
       console.log(map);
 
       // Stytles
-      Stadia_AlidadeSatellite.addTo(map);
-      // DefaultStyle.addTo(map);
+      // Stadia_AlidadeSatellite.addTo(map);
+      DefaultStyle.addTo(map);
       // Stadia_AlidadeSmoothDark.addTo(map);
 
       // Geting the coordinates when clicking on the map - Handling click on maps

@@ -12,14 +12,6 @@ import {
 //prettier-ignore
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-const form = document.querySelector(".form");
-const containerWorkouts = document.querySelector(".workouts");
-const inputType = document.querySelector(".form__input--type");
-const inputDistance = document.querySelector(".form__input--distance");
-const inputDuration = document.querySelector(".form__input--duration");
-const inputCadence = document.querySelector(".form__input--cadence");
-const inputElevation = document.querySelector(".form__input--elevation");
-
 //////////////// Your Work //////////////////////////
 
 // Implementing the class App
@@ -72,6 +64,15 @@ console.log(run1, cycling1);
 
 ///////////////////////////////////////////
 // Application Architecture
+
+const form = document.querySelector(".form");
+const containerWorkouts = document.querySelector(".workouts");
+const inputType = document.querySelector(".form__input--type");
+const inputDistance = document.querySelector(".form__input--distance");
+const inputDuration = document.querySelector(".form__input--duration");
+const inputCadence = document.querySelector(".form__input--cadence");
+const inputElevation = document.querySelector(".form__input--elevation");
+
 class App {
   #map;
   #mapEvent;
@@ -149,7 +150,56 @@ class App {
   }
 
   _newWorkout(e) {
+    const validInputs = (...inputs) =>
+      inputs.every((inp) => Number.isFinite(inp));
+
     e.preventDefault();
+    // Get Data from Form
+    const type = inputType.value;
+    const distance = +inputDistance.value;
+    const duration = +inputDuration.value;
+
+    // If Workout running = create running object
+    if (type === "running") {
+      const cadence = +inputCadence.value;
+      // Check if data is valid
+      if (
+        // !Number.isFinite(distance) ||
+        // !Number.isFinite(duration) ||
+        // !Number.isFinite(cadence)
+        !validInputs(distance, duration, cadence)
+      )
+        return alert("🤬bastard Postive Number Only ");
+    }
+
+    // If Workout cycling = create cycling object
+    if (type === "cycling") {
+      const elevG = +inputElevation.value;
+      if (!validInputs(distance, duration, elevG))
+        return alert("🤬bastard Postive Number Only ");
+    }
+
+    // Add new object to worout array
+
+    //Render workout on map as marker
+    L.marker([lat, lng])
+      .addTo(this.#map)
+      .bindPopup(
+        L.popup({
+          maxWidth: 250,
+          minWidth: 100,
+          autoClose: false,
+          closeOnClick: false,
+          className: "running-popup",
+        })
+      )
+      .setPopupContent("Booty")
+      .openPopup();
+
+    // Render workout on list
+
+    /// Hide and clear input fields
+
     console.log(this);
 
     // Clearing input fields
@@ -167,19 +217,6 @@ class App {
     // L.marker([lat, lng]).addTo(map).bindPopup("Mistresss").openPopup();
 
     // Creating a popup object
-    L.marker([lat, lng])
-      .addTo(this.#map)
-      .bindPopup(
-        L.popup({
-          maxWidth: 250,
-          minWidth: 100,
-          autoClose: false,
-          closeOnClick: false,
-          className: "running-popup",
-        })
-      )
-      .setPopupContent("Booty")
-      .openPopup();
   }
 }
 

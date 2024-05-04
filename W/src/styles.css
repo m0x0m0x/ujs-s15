@@ -253,5 +253,5 @@ a:visited {
   border-left: 5px solid rgba(245, 17, 211, 0.9);
 }
 .cycling-popup .leaflet-popup-content-wrapper {
-  border-left: 5px solid var(--color-brand--1);
+  border-left: 5px solid #01cdfe;
 }

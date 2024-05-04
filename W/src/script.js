@@ -80,6 +80,14 @@ if (navigator.geolocation)
 // Form interactivity here
 form.addEventListener("submit", function (e) {
   e.preventDefault();
+
+  // Clearing input fields
+  inputDistance.value =
+    inputDuration.value =
+    inputCadence.value =
+    inputElevation.value =
+      "";
+
   // Display Marker
   const { lat, lng } = mapEvent.latlng;
 
@@ -100,4 +108,10 @@ form.addEventListener("submit", function (e) {
     )
     .setPopupContent("Booty")
     .openPopup();
+});
+
+// Listening to change in the input type
+inputType.addEventListener("change", function () {
+  inputElevation.closest(".form__row").classList.toggle("form__row--hidden");
+  inputCadence.closest(".form__row").classList.toggle("form__row--hidden");
 });

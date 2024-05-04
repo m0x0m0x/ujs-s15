@@ -1,9 +1,4 @@
-// Install following extensions which are not installed by default 
-// Prettier, Indent Rainbow , Error Lens Color , Sweet Icons
-// Obsidian Theme / Mayuki Theme 
-// Install following extensions which are not installed by default
-// Prettier, Indent Rainbow , Error Lens Color , Sweet Icons , imagepreview
-// Obsidian Theme / Mayuki Theme
+// Prettier, Indent Rainbow , Error Lens Color , Sweet Icons , Obsidian Theme , Mayuki theme 
 {
   "workbench.list.smoothScrolling": true,
   "editor.smoothScrolling": true,

@@ -139,8 +139,8 @@ class App {
 
     // Stytles
     // Stadia_AlidadeSatellite.addTo(map);
-    DefaultStyle.addTo(this.#map);
-    // Stadia_AlidadeSmoothDark.addTo(map);
+    // DefaultStyle.addTo(this.#map);
+    Stadia_AlidadeSmoothDark.addTo(this.#map);
 
     // Geting the coordinates when clicking on the map - Handling click on maps
     this.#map.on("click", this._showForm.bind(this));

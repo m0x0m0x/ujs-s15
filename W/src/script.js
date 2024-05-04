@@ -182,6 +182,9 @@ class App {
     // Add new object to worout array
 
     //Render workout on map as marker
+    // Display Marker
+    const { lat, lng } = this.#mapEvent.latlng;
+    console.log(this.#mapEvent);
     L.marker([lat, lng])
       .addTo(this.#map)
       .bindPopup(
@@ -208,10 +211,6 @@ class App {
       inputCadence.value =
       inputElevation.value =
         "";
-
-    // Display Marker
-    console.log(this.#mapEvent);
-    const { lat, lng } = this.#mapEvent.latlng;
 
     // Add marker - This marker is not required
     // L.marker([lat, lng]).addTo(map).bindPopup("Mistresss").openPopup();

@@ -152,6 +152,7 @@ class App {
   _newWorkout(e) {
     const validInputs = (...inputs) =>
       inputs.every((inp) => Number.isFinite(inp));
+    const allPositive = (...inputs) => inputs.every((inp) => inp > 0);
 
     e.preventDefault();
     // Get Data from Form
@@ -167,15 +168,19 @@ class App {
         // !Number.isFinite(distance) ||
         // !Number.isFinite(duration) ||
         // !Number.isFinite(cadence)
-        !validInputs(distance, duration, cadence)
+        !validInputs(distance, duration, cadence) ||
+        !allPositive(distance, duration, cadence)
       )
-        return alert("🤬bastard Postive Number Only ");
+        return alert("🤬bastard +ve NumOnly ");
     }
 
     // If Workout cycling = create cycling object
     if (type === "cycling") {
       const elevG = +inputElevation.value;
-      if (!validInputs(distance, duration, elevG))
+      if (
+        !validInputs(distance, duration, elevG) ||
+        !allPositive(distance, duration)
+      )
         return alert("🤬bastard Postive Number Only ");
     }
 

@@ -24,15 +24,30 @@ const inputElevation = document.querySelector(".form__input--elevation");
 
 // Implementing the class App
 
+//Global variable
+// let map, mapEvent;
+
 class App {
-  constructor() {}
+  #map;
+  #mapEvent;
+
+  constructor() {
+    this._getPosition();
+    form.addEventListener("submit", this._newWorkout.bind(this));
+
+    // Listening to change in the input type
+    inputType.addEventListener("change", this._toggleElevationField);
+  }
 
   _getPosition() {
     // Accessing the geolocation
     if (navigator.geolocation)
-      navigator.geolocation.getCurrentPosition(this._loadMap, function () {
-        alert("Fucker No Location - Bastard");
-      });
+      navigator.geolocation.getCurrentPosition(
+        this._loadMap.bind(this),
+        function () {
+          alert("Fucker No Location - Bastard");
+        }
+      );
   }
 
   _loadMap(position) {
@@ -58,73 +73,72 @@ class App {
     //////////////////////////////////
     const AUScoords = [-30.750077700995366, 121.46753346785351];
     const bbwSC = [34.09963655644939, -118.28935780082956];
-    map = L.map("map").setView(bbwSC, 15);
+
+    console.log(this);
+    this.#map = L.map("map").setView(bbwSC, 15);
 
     // Examining the map object
     console.log(map);
 
     // Stytles
     // Stadia_AlidadeSatellite.addTo(map);
-    DefaultStyle.addTo(map);
+    DefaultStyle.addTo(this.#map);
     // Stadia_AlidadeSmoothDark.addTo(map);
 
     // Geting the coordinates when clicking on the map - Handling click on maps
-    map.on("click", function (mapE) {
-      mapEvent = mapE;
-      // Observe the map event
-      console.log(mapEvent);
-
-      // Setting up the form
-      form.classList.remove("hidden");
-      inputDistance.focus();
-    });
+    this.#map.on("click", this._showForm.bind(this));
   }
 
-  _showForm() {}
+  _showForm(mapE) {
+    this.#mapEvent = mapE;
+    // Observe the map event
 
-  _toggleElevationField() {}
+    // Setting up the form
+    form.classList.remove("hidden");
+    inputDistance.focus();
+  }
 
-  _newWorkout() {}
+  _toggleElevationField() {
+    inputElevation.closest(".form__row").classList.toggle("form__row--hidden");
+    inputCadence.closest(".form__row").classList.toggle("form__row--hidden");
+  }
+
+  _newWorkout(e) {
+    e.preventDefault();
+    console.log(this);
+
+    // Clearing input fields
+    inputDistance.value =
+      inputDuration.value =
+      inputCadence.value =
+      inputElevation.value =
+        "";
+
+    // Display Marker
+    console.log(this.#mapEvent);
+    const { lat, lng } = this.#mapEvent.latlng;
+
+    // Add marker - This marker is not required
+    // L.marker([lat, lng]).addTo(map).bindPopup("Mistresss").openPopup();
+
+    // Creating a popup object
+    L.marker([lat, lng])
+      .addTo(this.#map)
+      .bindPopup(
+        L.popup({
+          maxWidth: 250,
+          minWidth: 100,
+          autoClose: false,
+          closeOnClick: false,
+          className: "running-popup",
+        })
+      )
+      .setPopupContent("Booty")
+      .openPopup();
+  }
 }
 
-//Global variable
-let map, mapEvent;
+///////////////
 
-// Form interactivity here
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
-
-  // Clearing input fields
-  inputDistance.value =
-    inputDuration.value =
-    inputCadence.value =
-    inputElevation.value =
-      "";
-
-  // Display Marker
-  const { lat, lng } = mapEvent.latlng;
-
-  // Add marker
-  L.marker([lat, lng]).addTo(map).bindPopup("Mistresss").openPopup();
-
-  // Creating a popup object
-  L.marker([lat, lng])
-    .addTo(map)
-    .bindPopup(
-      L.popup({
-        maxWidth: 250,
-        minWidth: 100,
-        autoClose: false,
-        closeOnClick: false,
-        className: "running-popup",
-      })
-    )
-    .setPopupContent("Booty")
-    .openPopup();
-});
-
-// Listening to change in the input type
-inputType.addEventListener("change", function () {
-  inputElevation.closest(".form__row").classList.toggle("form__row--hidden");
-  inputCadence.closest(".form__row").classList.toggle("form__row--hidden");
-});
+// Creating the objects
+const app = new App();

@@ -155,6 +155,18 @@ class App {
     inputDistance.focus();
   }
 
+  _hideForm() {
+    // Empty Input add hidden class
+    (inputDistance.value = ""),
+      (inputDuration.value = ""),
+      (inputCadence.value = ""),
+      (inputElevation.value = "");
+
+    form.style.display = "none";
+    form.classList.add("hidden");
+    setTimeout(() => ((form.style.display = "grid"), 1000));
+  }
+
   _toggleElevationField() {
     inputElevation.closest(".form__row").classList.toggle("form__row--hidden");
     inputCadence.closest(".form__row").classList.toggle("form__row--hidden");
@@ -220,11 +232,13 @@ class App {
     console.log(this);
 
     // Clearing input fields
-    inputDistance.value =
-      inputDuration.value =
-      inputCadence.value =
-      inputElevation.value =
-        "";
+    this._hideForm();
+
+    // inputDistance.value =
+    //   inputDuration.value =
+    //   inputCadence.value =
+    //   inputElevation.value =
+    //     "";
 
     // Add marker - This marker is not required
     // L.marker([lat, lng]).addTo(map).bindPopup("Mistresss").openPopup();
@@ -246,7 +260,9 @@ class App {
           className: `${workout.type}-popup`,
         })
       )
-      .setPopupContent("Work")
+      .setPopupContent(
+        `${workout.type === "running" ? "👙" : "👠"} ${workout.description}`
+      )
       .openPopup();
   }
 

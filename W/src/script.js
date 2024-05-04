@@ -29,8 +29,8 @@ class Workout {
     //prettier-ignore
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-    this.description = `${this.type[0].toUppercase()}${this.type.slice(1)} on ${
-      months[this.date.getMonth]
+    this.description = `${this.type[0].toUpperCase()}${this.type.slice(1)} on ${
+      months[this.date.getMonth()]
     } ${this.date.getDate()}`;
   }
 }
@@ -253,7 +253,7 @@ class App {
   // Render workoutlist
   _renderWorkout(workout) {
     let html = `
-    <li class="workout workout--${workout.type}" data-id="${workout.id}">
+        <li class="workout workout--${workout.type}" data-id="${workout.id}">
           <h2 class="workout__title">${workout.description}</h2>
           <div class="workout__details">
             <span class="workout__icon">${
@@ -271,34 +271,34 @@ class App {
 
     if (workout.type === "running")
       html += `
-    <div class="workout__details">
-        <span class="workout__icon">⚡️</span>
-        <span class="workout__value">${workout.pace.toFixed(1)}</span>
-        <span class="workout__unit">min/km</span>
-      </div>
-    <div class="workout__details">
-        <span class="workout__icon">🦶🏼</span>
-        <span class="workout__value">${workout.cadence}</span>
-        <span class="workout__unit">spm</span>
-    </div>
+          <div class="workout__details">
+              <span class="workout__icon">⚡️</span>
+              <span class="workout__value">${workout.pace.toFixed(1)}</span>
+              <span class="workout__unit">min/km</span>
+            </div>
+          <div class="workout__details">
+              <span class="workout__icon">🦶🏼</span>
+              <span class="workout__value">${workout.cadence}</span>
+              <span class="workout__unit">spm</span>
+          </div>
         </li>
     `;
 
     if (workout.type === "cycling")
       html += `
-  <div class="workout__details">
-    <span class="workout__icon">⚡️</span>
-    <span class="workout__value">${workout.speed.toFixed(1)}</span>
-    <span class="workout__unit">km/h</span>
-  </div>
-  <div class="workout__details">
-    <span class="workout__icon">⛰</span>
-    <span class="workout__value">${workout.elevGain}</span>
-    <span class="workout__unit">m</span>
-  </div>
-  </li>`;
+          <div class="workout__details">
+            <span class="workout__icon">⚡️</span>
+            <span class="workout__value">${workout.speed.toFixed(1)}</span>
+            <span class="workout__unit">km/h</span>
+          </div>
+          <div class="workout__details">
+            <span class="workout__icon">⛰</span>
+            <span class="workout__value">${workout.elevGain}</span>
+            <span class="workout__unit">m</span>
+          </div>
+        </li>`;
 
-    form.insertAdjacentElement("afterend", html);
+    form.insertAdjacentHTML("afterend", html);
   }
 }
 

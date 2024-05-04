@@ -24,9 +24,54 @@ const inputElevation = document.querySelector(".form__input--elevation");
 
 // Implementing the class App
 
-//Global variable
-// let map, mapEvent;
+// Implement class for implementing the data
+class Workout {
+  // Date when object created
+  date = new Date();
+  id = (Date.now() + "").slice(-10);
 
+  constructor(coords, distance, duration) {
+    this.coords = coords; // Array [lat, long]
+    this.distance = distance;
+    this.duration = duration;
+  }
+}
+
+class Running extends Workout {
+  constructor(coords, distance, duration, cadence) {
+    super(coords, distance, duration);
+    this.cadence = cadence;
+    this.calcPace();
+  }
+
+  // Method for calculating pave
+  calcPace() {
+    // defined as min/km
+    this.pace = this.duration / this.distance;
+    return this.pace;
+  }
+}
+
+class Cycling extends Workout {
+  constructor(coords, distance, duration, elevGain) {
+    super(coords, distance, duration);
+    this.elevGain = elevGain;
+    this.calcSpeed();
+  }
+
+  calcSpeed() {
+    // In km/hr
+    this.speed = this.distance / this.duration / 60;
+    this.speed;
+  }
+}
+
+const run1 = new Running([52.353793, 4.898114], 100, 50, 300);
+const cycling1 = new Cycling([50.353793, 4.898114], 200, 12, 30);
+console.log(run1, cycling1);
+
+///////////////////////////////////////////
+// Application Architecture
 class App {
   #map;
   #mapEvent;

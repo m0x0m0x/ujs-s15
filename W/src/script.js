@@ -22,60 +22,73 @@ const inputElevation = document.querySelector(".form__input--elevation");
 
 //////////////// Your Work //////////////////////////
 
+// Implementing the class App
+
+class App {
+  constructor() {}
+
+  _getPosition() {
+    // Accessing the geolocation
+    if (navigator.geolocation)
+      navigator.geolocation.getCurrentPosition(this._loadMap, function () {
+        alert("Fucker No Location - Bastard");
+      });
+  }
+
+  _loadMap(position) {
+    //  Testing if geolocation api works
+    //   console.log("Your location faggot");
+    //   console.log(position);
+
+    // Storing by destructuring
+    const { latitude } = position.coords;
+    const { longitude } = position.coords;
+    console.log(latitude, longitude);
+    console.log(`https://www.google.com/maps/@${latitude},${longitude}`);
+    -33.908299238434424, 151.18094953868808;
+
+    console.log(
+      `
+  Australia Woman Juices
+  https://www.google.com/maps/place/52.353793,4.898114
+  
+  `
+    );
+
+    //////////////////////////////////
+    const AUScoords = [-30.750077700995366, 121.46753346785351];
+    const bbwSC = [34.09963655644939, -118.28935780082956];
+    map = L.map("map").setView(bbwSC, 15);
+
+    // Examining the map object
+    console.log(map);
+
+    // Stytles
+    // Stadia_AlidadeSatellite.addTo(map);
+    DefaultStyle.addTo(map);
+    // Stadia_AlidadeSmoothDark.addTo(map);
+
+    // Geting the coordinates when clicking on the map - Handling click on maps
+    map.on("click", function (mapE) {
+      mapEvent = mapE;
+      // Observe the map event
+      console.log(mapEvent);
+
+      // Setting up the form
+      form.classList.remove("hidden");
+      inputDistance.focus();
+    });
+  }
+
+  _showForm() {}
+
+  _toggleElevationField() {}
+
+  _newWorkout() {}
+}
+
 //Global variable
 let map, mapEvent;
-
-// Accessing the geolocation
-if (navigator.geolocation)
-  navigator.geolocation.getCurrentPosition(
-    function (position) {
-      //  Testing if geolocation api works
-      //   console.log("Your location faggot");
-      //   console.log(position);
-
-      // Storing by destructuring
-      const { latitude } = position.coords;
-      const { longitude } = position.coords;
-      console.log(latitude, longitude);
-      console.log(`https://www.google.com/maps/@${latitude},${longitude}`);
-      -33.908299238434424, 151.18094953868808;
-
-      console.log(
-        `
-        Australia Woman Juices
-        https://www.google.com/maps/place/52.353793,4.898114
-        
-        `
-      );
-
-      //////////////////////////////////
-      const AUScoords = [-30.750077700995366, 121.46753346785351];
-      const bbwSC = [34.09963655644939, -118.28935780082956];
-      map = L.map("map").setView(bbwSC, 15);
-
-      // Examining the map object
-      console.log(map);
-
-      // Stytles
-      // Stadia_AlidadeSatellite.addTo(map);
-      DefaultStyle.addTo(map);
-      // Stadia_AlidadeSmoothDark.addTo(map);
-
-      // Geting the coordinates when clicking on the map - Handling click on maps
-      map.on("click", function (mapE) {
-        mapEvent = mapE;
-        // Observe the map event
-        console.log(mapEvent);
-
-        // Setting up the form
-        form.classList.remove("hidden");
-        inputDistance.focus();
-      });
-    },
-    function () {
-      alert("Fucker No Location - Bastard");
-    }
-  );
 
 // Form interactivity here
 form.addEventListener("submit", function (e) {

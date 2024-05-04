@@ -200,23 +200,8 @@ class App {
     //Render workout on map as marker
     // Display Marker
 
-    console.log(this.#mapEvent);
-    L.marker([lat, lng])
-      .addTo(this.#map)
-      .bindPopup(
-        L.popup({
-          maxWidth: 250,
-          minWidth: 100,
-          autoClose: false,
-          closeOnClick: false,
-          className: "running-popup",
-        })
-      )
-      .setPopupContent("Booty")
-      .openPopup();
-
     // Render workout on list
-
+    this.renderWorkoutMarker(workout);
     /// Hide and clear input fields
 
     console.log(this);
@@ -232,6 +217,24 @@ class App {
     // L.marker([lat, lng]).addTo(map).bindPopup("Mistresss").openPopup();
 
     // Creating a popup object
+  }
+
+  // Render Method
+  renderWorkoutMarker(workout) {
+    console.log(this.#mapEvent);
+    L.marker([lat, lng])
+      .addTo(this.#map)
+      .bindPopup(
+        L.popup({
+          maxWidth: 250,
+          minWidth: 100,
+          autoClose: false,
+          closeOnClick: false,
+          className: `${tupe}-popup`,
+        })
+      )
+      .setPopupContent(workout.distance)
+      .openPopup();
   }
 }
 

@@ -85,6 +85,7 @@ const inputElevation = document.querySelector(".form__input--elevation");
 
 class App {
   #map;
+  #mapZoomLevel = 13;
   #mapEvent;
   #workouts = [];
 
@@ -94,6 +95,9 @@ class App {
 
     // Listening to change in the input type
     inputType.addEventListener("change", this._toggleElevationField);
+
+    // Workout jump to pin
+    containerWorkouts.addEventListener("click", this._moveToPopup.bind(this));
   }
 
   _getPosition() {
@@ -132,7 +136,7 @@ class App {
     const bbwSC = [34.09963655644939, -118.28935780082956];
 
     console.log(this);
-    this.#map = L.map("map").setView(bbwSC, 15);
+    this.#map = L.map("map").setView(bbwSC, this.#mapZoomLevel);
 
     // Examining the map object
     console.log(map);
@@ -315,6 +319,25 @@ class App {
         </li>`;
 
     form.insertAdjacentHTML("afterend", html);
+  }
+
+  _moveToPopup(e) {
+    const workoutEl = e.target.closest(".workout");
+    console.log(workoutEl);
+
+    if (!workoutEl) return;
+
+    const workout = this.#workouts.find(
+      (work) => work.id === workoutEl.dataset.id
+    );
+    console.log(workout);
+
+    this.#map.setView(workout.coords, this.#mapZoomLevel, {
+      animate: true,
+      pan: {
+        duration: 1,
+      },
+    });
   }
 }
 

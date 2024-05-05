@@ -95,7 +95,13 @@ class App {
   #workouts = [];
 
   constructor() {
+    // Get Users Position
     this._getPosition();
+
+    // Get data from localStorage
+    this._getLocalStorage(0);
+
+    //Attach Event Handlers
     form.addEventListener("submit", this._newWorkout.bind(this));
 
     // Listening to change in the input type
@@ -153,6 +159,10 @@ class App {
 
     // Geting the coordinates when clicking on the map - Handling click on maps
     this.#map.on("click", this._showForm.bind(this));
+
+    this.#workouts.forEach((work) => {
+      this._renderWorkoutMarker(work);
+    });
   }
 
   _showForm(mapE) {
@@ -253,6 +263,9 @@ class App {
     // L.marker([lat, lng]).addTo(map).bindPopup("Mistresss").openPopup();
 
     // Creating a popup object
+
+    // Setting local storage to all workouts
+    this._setLocalStorage();
   }
 
   // Render marker on Map
@@ -346,6 +359,25 @@ class App {
 
     // Using the publi cinference
     workout.click();
+  }
+
+  // Setting local storage
+  _setLocalStorage() {
+    localStorage.setItem("workouts", JSON.stringify(this.#workouts));
+  }
+
+  // Getting lcoal storage
+  _getLocalStorage() {
+    const data = JSON.parse(localStorage.getItem("workouts"));
+    console.log(data);
+
+    if (!data) return;
+
+    this.#workouts = data;
+
+    this.#workouts.forEach((work) => {
+      this._renderWorkout(work);
+    });
   }
 }
 

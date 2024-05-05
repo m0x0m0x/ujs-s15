@@ -358,7 +358,7 @@ class App {
     });
 
     // Using the publi cinference
-    workout.click();
+    // workout.click();
   }
 
   // Setting local storage
